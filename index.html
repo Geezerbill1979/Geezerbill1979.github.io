@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geezer Bill - Absolute Legend</title>
+    <style>
+        @keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background-image: url('Flag-England.webp');
+            background-repeat: repeat;
+            background-size: 160px 106px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            cursor: url('beer.png'), auto;
+        }
+
+        .container {
+            max-width: 1600px; /* Increased max width to accommodate the new table */
+            margin: 0 auto; /* Center the container */
+            padding: 20px; /* Optional padding */
+        }
+
+        .rainbow-title {
+            font-size: 3.5em;
+            animation: rainbow 3s infinite, bounce 2s infinite;
+            text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            margin: 20px 0;
+        }
+
+        .rainbow-subtitle {
+            margin-top: 10px;
+            font-size: 2.5em;
+            animation: rainbow 6s infinite;
+            text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            margin: 40px 0;
+        }
+
+        .geezer-quote {
+            font-style: italic;
+            background: rgba(255,255,255,0.8);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            border: 2px dashed #bf0a30;
+        }
+
+        .content {
+            margin: 20px;
+            display: flex;
+            justify-content: space-between; /* Changed to space-between to accommodate the new table */
+        }
+
+        .section {
+            border: 2px solid #FF4500;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 165, 0, 0.2);
+        }
+
+        .pub-facts {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 3px solid #bf0a30;
+        }
+
+        .pub-fact {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #bf0a30;
+        }
+
+        .spinning-beer {
+            display: inline-block;
+            font-size: 2em;
+            animation: spin 3s linear infinite;
+            margin: 10px;
+        }
+
+        table {
+            width: 100%; /* Allow the table to take full width of the parent */
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 8px;
+            border: 2px solid #cccccc;
+        }
+
+        th {
+            background-color: #bf0a30;
+            color: white;
+            text-align: left;
+        }
+
+        td {
+            background-color: white;
+        }
+
+        .geezer-motto {
+            font-size: 1.2em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #bf0a30, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .blog-section {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-post {
+        background: white;
+        border: 2px solid #bf0a30;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+
+    .blog-post:hover {
+        transform: translateY(-5px);
+    }
+
+    .post-date {
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+
+    .blog-post h3 {
+        color: #bf0a30;
+        margin: 5px 0 15px 0;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+
+    .post-content {
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+
+    .post-tags {
+        margin-top: 15px;
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    .review-points {
+        background: #f8f8f8;
+        border-left: 4px solid #bf0a30;
+        padding: 10px 20px;
+        margin: 10px 0;
+    }
+
+    .review-points li {
+        margin: 5px 0;
+        list-style-type: none;
+    }
+
+    .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(191, 10, 48, 0.95);
+            padding: 10px;
+            display: none;
+            color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        }
+
+        .audio-player.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .audio-title {
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .close-player {
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-container" style="
+    flex: 0.6;
+    margin: 0 auto; /* Center horizontally */
+    border: 4px ridge #c0c0c0; 
+    background-color: #f0f0ff;
+    padding: 10px;
+    font-size: 88%;
+    line-height: 1.5em;
+    width: 60%;
+    font-family: 'Comic Sans MS', cursive;">
+
+    <h1 class="rainbow-title">🍺 Geezer Bill 🍺</h1>
+    <div class="rainbow-subtitle">"LGBT? You mean Lager, Gear, Biscuits, and Tea?"</div>
+    <div class="spinning-beer">🍺</div>
+</div>
+
+
+
+        <div class="content">
+            <div style="
+                flex: 0.6;
+                margin-right: 20px;
+                border: 4px ridge #c0c0c0; 
+                background-color: #f0f0ff;
+                padding: 10px;
+                margin: 0;
+                font-size: 88%;
+                line-height: 1.5em;
+                font-family: 'Comic Sans MS', cursive;">
+                
+                <div style="text-align: center; padding: 0.5em; background: #bf0a30;">
+                    <div style="font-size: 125%; line-height: 1.2em; font-weight: bold; color: white; text-shadow: 2px 2px #000000;">
+                        Geezer Bill
+                    </div>
+                    <div style="font-style: italic; color: #ffffff;">The British Fat Geezer</div>
+                </div>
+
+                <div style="text-align: center; margin: 10px;">
+                    <img src="bill.png" alt="Bill, the British Geezer" style="max-width: 100%; height: auto; border: 3px solid #bf0a30; box-shadow: 3px 3px 5px rgba(0,0,0,0.5);">
+                </div>
+
+                <div class="table-section">
+                  <table>
+                      <tbody>
+                          <tr>
+                              <th colspan="2">Personal information</th>
+                          </tr>
+                          <tr>
+                              <th>Born</th>
+                              <td>Bill "The Fat Geezer" Johnson<br>March 15, 1979 (age 45)<br>London, England</td>
+                          </tr>
+                          <tr>
+                              <th>Nationality</th>
+                              <td>British 🇬🇧</td>
+                          </tr>
+                          <tr>
+                              <th>Other names</th>
+                              <td>
+                                  • The British Legend<br>
+                                  • Bill the Legend<br>
+                                  • The London Legend<br>
+                                  • The Pub King<br>
+                                  • Master of Munch
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>Occupation</th>
+                              <td>
+                                  • Pub Owner<br>
+                                  • Social Media Influencer<br>
+                                  • Champion Snack Taster<br>
+                                  • Professional Football Shouter<br>
+                                  • Fish & Chips Connoisseur
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>Years active</th>
+                              <td>2000–present (still going strong, innit)</td>
+                          </tr>
+                          <tr>
+                              <th>Known for</th>
+                              <td>
+                                  • Pub culture<br>
+                                  • Love for football<br>
+                                  • Gourmet snack reviews<br>
+                                  • Legendary pub quizzes<br>
+                                  • Best Sunday roast in London
+                              </td>
+                          </tr>
+                          <tr>
+                              <th colspan="2">Physical information</th>
+                          </tr>
+                          <tr>
+                              <th>Height</th>
+                              <td>5 ft 11 in (181 cm)</td>
+                          </tr>
+                          <tr>
+                              <th>Weight</th>
+                              <td>250 lb (113 kg) of pure British beef</td>
+                          </tr>
+                          <tr>
+                              <th colspan="2">Career highlights</th>
+                          </tr>
+                          <tr>
+                              <th>Achievements</th>
+                              <td>
+                                  • Best Pub in London 2020<br>
+                                  • Snacking Champion 2021<br>
+                                  • Community Favorite Award<br>
+                                  • "Most Proper Geezer" 2022<br>
+                                  • Guinness World Record: Most pork scratchings eaten in 3 minutes
+                              </td>
+                          </tr>
+                          <tr>
+                              <th colspan="2">Chelsea Football Club</th>
+                          </tr>
+                          <tr>
+                              <th>Role</th>
+                              <td>Devoted Chelsea Fan</td>
+                          </tr>
+                          <tr>
+                              <th>Signature Chant</th>
+                              <td>"Blue is the Colour!"</td>
+                          </tr>
+                          <tr>
+                              <th>Favorite Player</th>
+                              <td>Frank Lampard</td>
+                          </tr>
+                          <tr>
+                              <th>Match Day Routine</th>
+                              <td>
+                                  • Pre-match pints with mates at local pubs<br>
+                                  • Attending matches at Stamford Bridge<br>
+                                  • Hosting after-match discussions at his pub
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>Charitable Work</th>
+                              <td>
+                                  • Supports Chelsea Foundation initiatives<br>
+                                  • Organizing community events for local fans
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+                
+            </div>
+            <!-- New blog section -->
+            <div style="
+            flex: 1;
+            margin-left: 20px;
+            border: 4px ridge #c0c0c0;
+            background-color: #f0f0ff;
+            padding: 0.2em;
+            margin: 0 0 0 20px;
+            font-size: 88%;
+            line-height: 1.5em;
+            font-family: 'Comic Sans MS', cursive;">
+            
+            <div style="text-align: center; padding: 0.5em; background: #bf0a30;">
+                <div style="font-size: 125%; line-height: 1.2em; font-weight: bold; color: white; text-shadow: 2px 2px #000000;">
+                    Geezer Bill's Daily Chronicles
+                </div>
+            </div>
+        
+            <div style="padding: 10px;">
+                <table style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: rgba(255, 255, 255, 0.9);">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Latest Updates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">January 14, 2025</th>
+                        <td style="padding: 8px; border: 2px solid #cccccc;">
+                            <strong>Chelsea 3 - 1 Bournemouth</strong>
+                            <br>Blimey, what a comeback! Goals from Jackson, Fernandez, and a cheeky late effort from Palmer bagged us a crucial three points.
+                            <br>
+                            <span style="color: #666; font-size: 1.2em;">🔊 <a href="#" class="butchers-link" data-audio="bournemouth.mp3" data-title="Chelsea vs Bournemouth - Jan 14" style="color: #bf0a30; text-decoration: none;">Listen</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">January 10, 2025</th>
+                        <td style="padding: 8px; border: 2px solid #cccccc;">
+                            <strong>Chelsea 5 - 0 Morecambe</strong>
+                            <br>What a right old thrashing! Joao Felix bagged a brace, plus a couple of lively long-range belters from Tosin into the mix, sending us into the FA Cup fourth round nyammin’!
+                            <br>
+                            <span style="color: #666; font-size: 1.2em;">🔊 <a href="#" class="butchers-link" data-audio="Morecambe.mp3" data-title="Chelsea vs Morecambe - Jan 14" style="color: #bf0a30; text-decoration: none;">Listen</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                      <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Twitter</th>
+                      <td style="padding: 8px; border: 2px solid #cccccc;">
+                          <strong>Follow Geezer Bill on Twitter!</strong><br>
+                          Get the latest pub updates and banter. Daily crisp reviews and football rants! 🍺<br>
+                          <a href="#" style="color: #bf0a30; text-decoration: none; font-weight: bold;">@GeezerBill</a>
+                      </td>
+                      </tr>
+                    <tr>
+                        <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">January 4, 2025</th>
+                        <td style="padding: 8px; border: 2px solid #cccccc;">
+                            <strong>Chelsea 1 - 1 Crystal Palace</strong>
+                            <br>Palmer fired one in early, but Mateta had other ideas, nicking a late equalizer. Proper frustrating draw that was for the Blues!
+                            <br>
+                            <span style="color: #666; font-size: 1.2em;">🔊 <a href="#" class="butchers-link" data-audio="Palace.mp3" data-title="Chelsea vs Crystal Palace - Jan 14" style="color: #bf0a30; text-decoration: none;">Listen</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                      <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">January 1, 2025</th>
+                      <td style="padding: 8px; border: 2px solid #cccccc;">
+                          <strong>New Year's Eve Bash at the Pub!</strong>
+                          <br>What a night it's been! The pub was packed to the rafters, everyone in high spirits and ready to see in the new year. We had a proper knees-up, with music, dancing, and more pints than you could shake a stick at. Topped it all off with a massive fireworks display at midnight - the whole neighborhood was lit up! Can't wait to see what 2025 has in store.
+                          <br>
+                      </td>
+                  </tr>
+                  <tr>
+                    <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Dexscreener</th>
+                    <td style="padding: 8px; border: 2px solid #cccccc;">
+                        <strong>Check $GEEZER Token!</strong><br>
+                        Track the official Geezer Bill token. Always DYOR! 📊<br>
+                        <a href="#" style="color: #bf0a30; text-decoration: none; font-weight: bold;">View on Dexscreener</a>
+                    </td>
+                </tr>
+                    <tr>
+                        <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">December 30, 2024</th>
+                        <td style="padding: 8px; border: 2px solid #cccccc;">
+                            <strong>Chelsea 0 - 2 Ipswich Town</strong>
+                            <br>What a downer! Delap slammed in a pen, then Hutchinson sealed the deal for Ipswich while we missed a load of chances. Proper disappointing.
+                            <br>
+                            <span style="color: #666; font-size: 1.2em;">🔊 <a href="#" class="butchers-link" data-audio="Ipswich.mp3" data-title="Chelsea vs Ipswich - Jan 14" style="color: #bf0a30; text-decoration: none;">Listen</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">December 26, 2024</th>
+                        <td style="padding: 8px; border: 2px solid #cccccc;">
+                            <strong>Chelsea 1 - 2 Fulham</strong>
+                            <br>Palmer's record-breaking goal got lost in the shuffle with two late ones from Fulham, dashing our unbeaten run. What a right kick in the teeth!
+                            <br>
+                            <span style="color: #666; font-size: 1.2em;">🔊 <a href="#" class="butchers-link" data-audio="fulham.mp3" data-title="Chelsea vs Fulham - Jan 14" style="color: #bf0a30; text-decoration: none;">Listen</a></span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                      <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Telegram</th>
+                      <td style="padding: 8px; border: 2px solid #cccccc;">
+                          <strong>Join the Telegram Group!</strong><br>
+                          Be part of the proper British community. Get instant updates about pub events! 📱<br>
+                          <a href="#" style="color: #bf0a30; text-decoration: none; font-weight: bold;">t.me/GeezerBillOfficial</a>
+                      </td>
+                  </tr>
+                    <tr>
+                      <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">December 25, 2024</th>
+                      <td style="padding: 8px; border: 2px solid #cccccc;">
+                          <strong>Merry Christmas from the Geezer!</strong>
+                          <br>What a proper Christmas Day it's been! Woke up to a mountain of pressies, then headed down to the pub for a cracking roast and a few pints with the lads. Finished the day off with a classic Christmas movie and a plate of mince pies. Can't beat it, can you?
+                          <br>
+                      </td>
+                  </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="audio-player">
+              <button class="close-player">×</button>
+              <span class="audio-title"></span>
+              <audio controls>
+                  <source src="" type="audio/mpeg">
+                  Your browser does not support the audio element.
+              </audio>
+          </div>
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  const audioPlayer = document.querySelector('.audio-player');
+                  const audio = audioPlayer.querySelector('audio');
+                  const audioTitle = audioPlayer.querySelector('.audio-title');
+                  const closeButton = audioPlayer.querySelector('.close-player');
+                  
+                  // Add click handlers to all butcher's links
+                  document.querySelectorAll('.butchers-link').forEach(link => {
+                      link.addEventListener('click', function(e) {
+                          e.preventDefault();
+                          const audioSrc = this.dataset.audio;
+                          const title = this.dataset.title;
+                          
+                          // Update audio source and title
+                          audio.src = audioSrc;
+                          audioTitle.textContent = title;
+                          
+                          // Show player and play audio
+                          audioPlayer.classList.add('active');
+                          audio.play();
+                      });
+                  });
+                  
+                  // Close player handler
+                  closeButton.addEventListener('click', function() {
+                      audio.pause();
+                      audioPlayer.classList.remove('active');
+                  });
+              });
+          </script>
+
+            
+</div>
+<!-- New Chelsea section -->
+<div style="
+    flex: 0.4;
+    margin-left: 20px;
+    border: 4px ridge #c0c0c0;
+    background-color: #f0f0ff;
+    padding: 0.2em;
+    margin: 0 0 0 20px;
+    font-size: 88%;
+    line-height: 1.5em;
+    font-family: 'Comic Sans MS', cursive;">
+    
+    <div style="text-align: center; padding: 0.5em; background: #bf0a30;">
+        <div style="font-size: 125%; line-height: 1.2em; font-weight: bold; color: white; text-shadow: 2px 2px #000000;">
+            Chelsea FC Updates
+        </div>
+    </div>
+    
+    <div style="padding: 10px;">
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: rgba(255, 255, 255, 0.9);">
+            <thead>
+                <tr>
+                    <th colspan="3" style="background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Next Games</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th style="width: 20%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Date</th>
+                    <th style="width: 40%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Opponent</th>
+                    <th style="width: 40%; background-color: #bf0a30; color: white; padding: 8px; border: 2px solid #cccccc;">Bills Expected Outcome</th>
+                </tr>
+                <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">20th January 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Wolves</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Win (2-0)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">25th January 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Man City</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Loss (1-3)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">3rd February 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">West Ham</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Win (3-1)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">14th February 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Brighton</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Draw (1-1)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">22nd February 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Aston Villa</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Win (2-1)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">26th February 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Southampton</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Win (3-0)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">8th March 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Leicester</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Draw (2-2)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">15th March 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Arsenal</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Loss (0-2)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">2nd April 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Spurs</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Win (2-1)</td> 
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">5th April 2025</td>
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Brentford</td> 
+                  <td style="padding: 8px; border: 2px solid #cccccc;">Win (2-0)</td> 
+              </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>
